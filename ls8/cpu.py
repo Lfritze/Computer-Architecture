@@ -21,7 +21,7 @@ class CPU:
     def load(self):
         """Load a program into memory."""
 
-        address = 0
+        # address = 0
         filename = sys.argv[1]
         with open(filename) as f:
             for address, line in enumerate(f):
@@ -134,7 +134,7 @@ class CPU:
             #     reg_num = self.ram[self.pc + 1]
             #     print(self.ram[reg_num])
             #     self.pc += 2
-            
+
             else:
                 print(f'Unknown instruction {ir} at address {self.pc}')
                 sys.exit(1)
