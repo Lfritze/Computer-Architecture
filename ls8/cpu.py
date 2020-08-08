@@ -2,11 +2,14 @@
 
 import sys
 
+LDI = 0b10000010
+HLT = 0b00000001
+PRN = 0b01000111
+MUL = 0b10100010
+NOP = 0b00000000
+
 class CPU:
     """Main CPU class."""
-    LDI = 0b10000010
-    HLT = 0b00000001
-    PRN = 0b01000111
 
     def __init__(self):
         """Construct a new CPU."""
@@ -19,6 +22,17 @@ class CPU:
         """Load a program into memory."""
 
         address = 0
+        filename = sys.argv[1]
+        with open(filename) as f:
+            for address, line in enumerate(f):
+                line = line.split('#')
+                try:
+                    v = int(line[0], 2)
+                except ValueError:
+                    continue
+                self.ram_write(address, v)
+
+
 
         # For now, we've just hardcoded a program:
 
